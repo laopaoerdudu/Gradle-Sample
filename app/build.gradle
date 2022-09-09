@@ -35,6 +35,25 @@ android {
 }
 
 dependencies {
+    configurations {
+        // 因为 group 不同，所以需要先将 2.x 的 rxjava 全局 exclude 掉；
+        compile.exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
+        all {
+            resolutionStrategy {
+                eachDependency { DependencyResolveDetails details ->
+                    if(details.requested.group == 'io.reactivex.rxjava3'
+                            && details.requested.name == 'rxjava') {
+                        /**
+                         * 将所有 3.x 的 rxjava 的依赖版本都统一成 `3.0.0-RC0`
+                         * 开发者再也不需要针对每一个有 RxJava 依赖的三方库进行额外的 exclude 了
+                         */
+                        details.useVersion '3.0.0-RC0'
+                        details.because 'Unfied the version of RxJava3.'
+                    }
+                }
+            }
+        }
+    }
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
