@@ -1,0 +1,20 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+    id 'kotlin-kapt'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.google.auto.service:auto-service:1.0.1'
+    implementation 'com.android.tools.lint:lint-api:27.2.2'
+    implementation 'com.android.tools.lint:lint-checks:27.2.2'
+
+    //    implementation project(":lint_spi")
+}
+
+jar {
+    manifest {
+        attributes("Lint-Registry-v2": "com.wwe.lint.IssueRegistryRepository")
+    }
+}

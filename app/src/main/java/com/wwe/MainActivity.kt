@@ -1,6 +1,7 @@
 package com.wwe
 
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -21,6 +22,8 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        Log.i("WWE", "WWE super start")
 
         setSupportActionBar(binding.toolbar)
 
