@@ -1,0 +1,24 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    compileSdk 32
+    defaultConfig {
+        minSdk 21
+        targetSdk 32
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    lintOptions {
+        checkDependencies true
+    }
+}
+
+/** Package the given lint checks library into this AAR  */
+dependencies {
+    implementation project(':lint-sdk')
+    lintPublish project(':lint-sdk')
+}

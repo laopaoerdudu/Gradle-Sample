@@ -1,20 +1,24 @@
 plugins {
     id 'java-library'
     id 'kotlin'
-    id 'kotlin-kapt'
+    id 'com.android.lint'
+}
+
+lintOptions {
+    htmlReport true
+    htmlOutput file("lint-report.html")
+    textReport true
+    absolutePaths false
+    ignoreTestSources true
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.google.auto.service:auto-service:1.0.1'
-    implementation 'com.android.tools.lint:lint-api:27.2.2'
-    implementation 'com.android.tools.lint:lint-checks:27.2.2'
+    // For a description of the below dependencies, see the main project README
+    compileOnly "com.android.tools.lint:lint-api:$lintVersion"
 
-    //    implementation project(":lint_spi")
-}
+    // You typically don't need this one:
+    compileOnly "com.android.tools.lint:lint-checks:$lintVersion"
 
-jar {
-    manifest {
-        attributes("Lint-Registry-v2": "com.wwe.lint.IssueRegistryRepository")
-    }
+    testImplementation "com.android.tools.lint:lint:$lintVersion"
+    testImplementation "com.android.tools.lint:lint-tests:$lintVersion"
 }
