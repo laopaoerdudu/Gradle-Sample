@@ -1,0 +1,295 @@
+{
+    "$schema" : "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+    "version" : "2.1.0",
+    "runs" : [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Android Lint",
+                    "fullName": "Android Lint (in gradle)",
+                    "version": "7.2.0",
+                    "semanticVersion": "7.2.0",
+                    "organization": "Google",
+                    "informationUri": "https://developer.android.com/studio/write/lint",
+                    "fullDescription": {
+                        "text": "Static analysis originally for Android source code but now performing general analysis"
+                    },
+                    "language": "en-US",
+                    "rules": [
+                        {
+                            "id": "GradleDependency",
+                            "shortDescription": {
+                                "text": "Obsolete Gradle Dependency"
+                            },
+                            "fullDescription": {
+                                "text": "This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+                            },
+                            "defaultConfiguration": {
+                                "level": "warning",
+                                "rank": 70
+                            },
+                            "properties": {
+                                "tags": [
+                                    "Correctness"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "LogUsage",
+                            "shortDescription": {
+                                "text": "Log Usage"
+                            },
+                            "fullDescription": {
+                                "text": "Please use the unified LogUtil class!"
+                            },
+                            "defaultConfiguration": {
+                                "level": "error",
+                                "rank": 50
+                            },
+                            "properties": {
+                                "tags": [
+                                    "Correctness"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            "originalUriBaseIds": {
+                "%SRCROOT%": {
+                    "uri": "file:///Users/davidbzhang/work-space/GradleSample/"
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "LogUsage",
+                    "ruleIndex": 1,
+                    "message": {
+                        "text": "⇢ 请使用Logger替换Log"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uriBaseId": "%SRCROOT%",
+                                    "uri": "app/src/main/java/com/wwe/Test.kt"
+                                },
+                                "region": {
+                                    "startLine": 7,
+                                    "startColumn": 9,
+                                    "endLine": 7,
+                                    "endColumn": 40,
+                                    "charOffset": 80,
+                                    "charLength": 31,
+                                    "snippet": {
+                                        "text": "Log.i(\"WWE\", \"WWE Super start\")"
+                                    }
+                                },
+                                "contextRegion": {
+                                    "startLine": 5,
+                                    "endLine": 10,
+                                    "snippet": {
+                                        "text": "class Test {\n    fun test() {\n        Log.i(\"WWE\", \"WWE Super start\")\n    }"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "partialFingerprints": {
+                        "sourceContext/v1": "ca00b775436dd3f6"
+                    }
+                },
+                {
+                    "ruleId": "GradleDependency",
+                    "ruleIndex": 0,
+                    "message": {
+                        "text": "A newer version of com.android.tools.lint:lint-api than 30.2.0 is available: 30.2.2"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uriBaseId": "%SRCROOT%",
+                                    "uri": "lint-sdk/build.gradle"
+                                },
+                                "region": {
+                                    "startLine": 17,
+                                    "startColumn": 17,
+                                    "endLine": 17,
+                                    "endColumn": 63,
+                                    "charOffset": 336,
+                                    "charLength": 46,
+                                    "snippet": {
+                                        "text": "\"com.android.tools.lint:lint-api:$lintVersion\""
+                                    }
+                                },
+                                "contextRegion": {
+                                    "startLine": 15,
+                                    "endLine": 20,
+                                    "snippet": {
+                                        "text": "dependencies {\n    // For a description of the below dependencies, see the main project README\n    compileOnly \"com.android.tools.lint:lint-api:$lintVersion\"\n"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "partialFingerprints": {
+                        "sourceContext/v1": "5595516c823e387c"
+                    }
+                },
+                {
+                    "ruleId": "GradleDependency",
+                    "ruleIndex": 0,
+                    "message": {
+                        "text": "A newer version of com.android.tools.lint:lint-checks than 30.2.0 is available: 30.2.2"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uriBaseId": "%SRCROOT%",
+                                    "uri": "lint-sdk/build.gradle"
+                                },
+                                "region": {
+                                    "startLine": 20,
+                                    "startColumn": 17,
+                                    "endLine": 20,
+                                    "endColumn": 66,
+                                    "charOffset": 442,
+                                    "charLength": 49,
+                                    "snippet": {
+                                        "text": "\"com.android.tools.lint:lint-checks:$lintVersion\""
+                                    }
+                                },
+                                "contextRegion": {
+                                    "startLine": 18,
+                                    "endLine": 23,
+                                    "snippet": {
+                                        "text": "\n    // You typically don't need this one:\n    compileOnly \"com.android.tools.lint:lint-checks:$lintVersion\"\n    compileOnly \"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion\""
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "partialFingerprints": {
+                        "sourceContext/v1": "3d74c5c889cf30eb"
+                    }
+                },
+                {
+                    "ruleId": "GradleDependency",
+                    "ruleIndex": 0,
+                    "message": {
+                        "text": "A newer version of org.jetbrains.kotlin:kotlin-stdlib-jdk7 than 1.6.21 is available: 1.7.10"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uriBaseId": "%SRCROOT%",
+                                    "uri": "lint-sdk/build.gradle"
+                                },
+                                "region": {
+                                    "startLine": 21,
+                                    "startColumn": 17,
+                                    "endLine": 21,
+                                    "endColumn": 73,
+                                    "charOffset": 508,
+                                    "charLength": 56,
+                                    "snippet": {
+                                        "text": "\"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion\""
+                                    }
+                                },
+                                "contextRegion": {
+                                    "startLine": 19,
+                                    "endLine": 24,
+                                    "snippet": {
+                                        "text": "    // You typically don't need this one:\n    compileOnly \"com.android.tools.lint:lint-checks:$lintVersion\"\n    compileOnly \"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion\"\n"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "partialFingerprints": {
+                        "sourceContext/v1": "e21e097e68e3904d"
+                    }
+                },
+                {
+                    "ruleId": "GradleDependency",
+                    "ruleIndex": 0,
+                    "message": {
+                        "text": "A newer version of com.android.tools.lint:lint than 30.2.0 is available: 30.2.2"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uriBaseId": "%SRCROOT%",
+                                    "uri": "lint-sdk/build.gradle"
+                                },
+                                "region": {
+                                    "startLine": 24,
+                                    "startColumn": 24,
+                                    "endLine": 24,
+                                    "endColumn": 66,
+                                    "charOffset": 633,
+                                    "charLength": 42,
+                                    "snippet": {
+                                        "text": "\"com.android.tools.lint:lint:$lintVersion\""
+                                    }
+                                },
+                                "contextRegion": {
+                                    "startLine": 22,
+                                    "endLine": 27,
+                                    "snippet": {
+                                        "text": "\n    testImplementation 'junit:junit:4.13.2'\n    testImplementation \"com.android.tools.lint:lint:$lintVersion\"\n    testImplementation \"com.android.tools.lint:lint-tests:$lintVersion\""
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "partialFingerprints": {
+                        "sourceContext/v1": "e35abb017b68e508"
+                    }
+                },
+                {
+                    "ruleId": "GradleDependency",
+                    "ruleIndex": 0,
+                    "message": {
+                        "text": "A newer version of com.android.tools.lint:lint-tests than 30.2.0 is available: 30.2.2"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uriBaseId": "%SRCROOT%",
+                                    "uri": "lint-sdk/build.gradle"
+                                },
+                                "region": {
+                                    "startLine": 25,
+                                    "startColumn": 24,
+                                    "endLine": 25,
+                                    "endColumn": 72,
+                                    "charOffset": 699,
+                                    "charLength": 48,
+                                    "snippet": {
+                                        "text": "\"com.android.tools.lint:lint-tests:$lintVersion\""
+                                    }
+                                },
+                                "contextRegion": {
+                                    "startLine": 23,
+                                    "endLine": 28,
+                                    "snippet": {
+                                        "text": "    testImplementation 'junit:junit:4.13.2'\n    testImplementation \"com.android.tools.lint:lint:$lintVersion\"\n    testImplementation \"com.android.tools.lint:lint-tests:$lintVersion\"\n}"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "partialFingerprints": {
+                        "sourceContext/v1": "b6601d12832ae655"
+                    }
+                }
+            ]
+        }
+    ]
+}
