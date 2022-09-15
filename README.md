@@ -20,7 +20,7 @@ Gradle 只会将依赖项添加到 build 输出，以便在运行时使用。也
 
 ```
 
-./gradlew lint
+./gradlew :app:lint
 
 ```
 
