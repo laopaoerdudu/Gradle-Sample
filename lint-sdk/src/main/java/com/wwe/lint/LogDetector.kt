@@ -9,18 +9,6 @@ import java.util.*
 
 class LogDetector : Detector(), Detector.UastScanner {
 
-    companion object {
-        val ISSUE = Issue.create(
-            "LogUsage",
-            "Log Usage",
-            "Please use the unified LogUtil class!",
-            Category.CORRECTNESS,
-            6,
-            Severity.ERROR,
-            Implementation(LogDetector::class.java, Scope.JAVA_FILE_SCOPE)
-        )
-    }
-
     override fun getApplicableUastTypes(): List<Class<out UElement>>? {
         return Collections.singletonList(UCallExpression::class.java)
     }
@@ -62,5 +50,17 @@ class LogDetector : Detector(), Detector.UastScanner {
                 "\u21E2 请使用Logger替换Log"
             )
         }
+    }
+
+    companion object {
+        val ISSUE = Issue.create(
+            "LogUsage",
+            "Log Usage",
+            "Please use the unified LogUtil class!",
+            Category.CORRECTNESS,
+            6,
+            Severity.ERROR,
+            Implementation(LogDetector::class.java, Scope.JAVA_FILE_SCOPE)
+        )
     }
 }
