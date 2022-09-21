@@ -25,6 +25,6 @@ gradlew.bat
 /.idea/encodings.xml
 /.idea/gradle.xml
 /.idea/jarRepositories.xml
-/.idea/misc.xml
 /.idea/runConfigurations.xml
 /.idea/vcs.xml
+.idea/misc.xml
